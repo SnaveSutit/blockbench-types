@@ -21,7 +21,12 @@ interface GroupOptions {
 
 declare class Group extends OutlinerNode {
 	constructor(options: Partial<GroupOptions> | string)
-	static selected: Group
+	/**
+	 * @deprecated Use `Group.first_selected` instead.
+	 */
+	static selected: Group | undefined
+	static first_selected: Group | undefined
+	static multi_selected: Group[]
 	static all: Group[]
 	static animator: BoneAnimator
 	/**Check if any groups are in the project */
