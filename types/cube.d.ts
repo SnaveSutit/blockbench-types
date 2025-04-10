@@ -56,6 +56,7 @@ declare global {
 			[fkey: string]: CubeFace
 		}
 		rescale?: boolean
+		light_emission?: number
 		rotation_axis: 'x' | 'y' | 'z'
 		/**
 		 * UV position for box UV mode
