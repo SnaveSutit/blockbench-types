@@ -96,6 +96,9 @@ declare global {
 	}
 
 	function animate(): void
+
+	const display_area: THREE.Object3D
+	const display_base: THREE.Object3D
 }
 
 export {}
