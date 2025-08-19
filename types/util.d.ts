@@ -95,7 +95,7 @@ declare global {
 	function capitalizeFirstLetter(string: any): any
 	function autoStringify(any: any): string
 	function pluralS(arr: any): '' | 's'
-	function pathToName(path: string, extension: boolean = false): string | ''
+	function pathToName(path: string, extension: boolean): string | ''
 	function pathToExtension(path: string): string | ''
 	function intToRGBA(int: any): {
 		r: number
