@@ -3,8 +3,7 @@ declare global {
 	type ConditionResolvable =
 		| undefined
 		| boolean
-		| any
-		| ((context: any) => any)
+		| ((context: any) => boolean)
 		| Partial<{
 				modes: string[]
 				formats: string[]
