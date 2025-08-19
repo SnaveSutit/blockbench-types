@@ -1,4 +1,33 @@
 /// <reference path="./blockbench.d.ts"/>
+
+type Split<S extends string, D extends string> = string extends S
+	? string[]
+	: S extends ''
+	? []
+	: S extends `${infer T}${D}${infer U}`
+	? [T, ...Split<U, D>]
+	: [S]
+
+type IsKnownEventName<T extends string> = T extends keyof WindowEventMap ? T : never
+
+type ExtractKnownEventNames<T extends string> = Split<T, ' '> extends (infer U)[]
+	? U extends string
+		? IsKnownEventName<U>
+		: never
+	: never
+
+interface GenericEventListener<EventName extends keyof WindowEventMap> {
+	(evt: WindowEventMap[EventName]): void
+}
+
+interface GenericEventListenerObject<EventName extends keyof WindowEventMap> {
+	handleEvent(object: WindowEventMap[EventName]): void
+}
+
+type GenericEventListenerOrEventListenerObject<EventName extends keyof WindowEventMap> =
+	| GenericEventListener<EventName>
+	| GenericEventListenerObject<EventName>
+
 declare global {
 	type ConditionResolvable =
 		| undefined
@@ -47,23 +76,32 @@ declare global {
 	function convertTouchEvent(event: MouseEvent): MouseEvent
 
 	/**
-	 * Adds an event listener to an element, except that is supports multiple event types simultaneously
-	 * @param element Target Element
-	 * @param events Event types, separated by space characters
-	 * @param func Function
-	 * @param option Option
+	 * Adds an event listener to an element that listens to multiple events
+	 * @param events Event names separated by spaces
 	 */
-	function addEventListeners(
-		element: HTMLElement,
-		events: string,
-		func: (event: Event) => void,
-		option?: any
+	function addEventListeners<EventNames extends string>(
+		element: HTMLElement | Document | Window,
+		events: EventNames,
+		func: GenericEventListenerOrEventListenerObject<ExtractKnownEventNames<EventNames>>,
+		options?: boolean | AddEventListenerOptions
 	): void
 
-	function compareVersions(string1: any, string2: any): boolean
-	function convertTouchEvent(event: any): any
-	function addEventListeners(el: any, events: any, func: any, option: any): void
-	function removeEventListeners(el: any, events: any, func: any, option: any): void
+	/**
+	 * Removes an event listener from multiple events on an element
+	 * @param events Event names separated by spaces
+	 */
+	function removeEventListeners<EventNames extends string>(
+		element: HTMLElement | Document | Window,
+		events: EventNames,
+		func: GenericEventListenerOrEventListenerObject<ExtractKnownEventNames<EventNames>>,
+		options?: boolean | EventListenerOptions
+	): void
+
+	/**
+	 * Checks if versionA is newer than versionB
+	 */
+	function compareVersions(versionA: string, versionB: string): boolean
+	function convertTouchEvent(event: Event): MouseEvent
 	function guid(): string
 	function isUUID(s: any): any
 	function bbuid(l: any): string
