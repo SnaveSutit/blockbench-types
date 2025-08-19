@@ -32,7 +32,7 @@ declare global {
 	 * Tests if a condition is truthy of falsy. Returns true if the condition is unspecified
 	 * @param condition Boolean, function, any or anything else
 	 */
-	function Condition(condition: ConditionResolvable): boolean
+	function Condition(condition: ConditionResolvable, context?: any): boolean
 
 	/**
 	 * Wrapper for Objects that tells the custom JSON exporter to write in one line
