@@ -1,10 +1,8 @@
 /// <reference path="./blockbench.d.ts"/>
 
 declare global {
-	const Prism: typeof import('prismjs')
 	const scene: THREE.Scene
-	const Transformer: any
-	const DOMPurify: typeof import('dompurify')
+	const Transformer: THREE.TransformControls
 	const electron: typeof import('electron')
 	const { clipboard, shell, nativeImage, ipcRenderer, dialog }: typeof electron
 
@@ -16,7 +14,9 @@ declare global {
 	const PathModule: typeof import('path')
 	const fs: typeof import('fs')
 
-	const tinycolor: typeof import('tinycolor2')
+	// Hide the "Prefer imports over UMD globals" warning for these
+	namespace DOMPurify {}
+	namespace tinycolor {}
 
 	let selected: OutlinerElement[]
 	const Toolbars: Record<string, Toolbar>
@@ -130,21 +130,21 @@ declare global {
 		 */
 		overlap(arr: Array<any>): number
 
-		V3_set(x: number, y: number, z: number): this
-		V3_set(values: ArrayVector3): this
-		V3_set(value: THREE.Vector3): this
-		V3_add(x: number, y: number, z: number): this
-		V3_add(values: ArrayVector3): this
-		V3_add(value: THREE.Vector3): this
-		V3_subtract(x: number, y: number, z: number): this
-		V3_subtract(values: ArrayVector3): this
-		V3_subtract(value: THREE.Vector3): this
-		V3_multiply(x: number, y: number, z: number): this
-		V3_multiply(values: ArrayVector3): this
-		V3_multiply(value: THREE.Vector3): this
-		V3_divide(x: number, y: number, z: number): this
-		V3_divide(values: ArrayVector3): this
-		V3_divide(value: THREE.Vector3): this
+		V3_set(x: number, y: number, z: number): ArrayVector3
+		V3_set(values: ArrayVector3): ArrayVector3
+		// V3_set(value: THREE.Vector3): this
+		V3_add(x: number, y: number, z: number): ArrayVector3
+		V3_add(values: ArrayVector3): ArrayVector3
+		V3_add(value: THREE.Vector3): ArrayVector3
+		V3_subtract(x: number, y: number, z: number): ArrayVector3
+		V3_subtract(values: ArrayVector3): ArrayVector3
+		V3_subtract(value: THREE.Vector3): ArrayVector3
+		V3_multiply(x: number, y: number, z: number): ArrayVector3
+		V3_multiply(values: ArrayVector3): ArrayVector3
+		V3_multiply(value: THREE.Vector3): ArrayVector3
+		V3_divide(x: number, y: number, z: number): ArrayVector3
+		V3_divide(values: ArrayVector3): ArrayVector3
+		V3_divide(value: THREE.Vector3): ArrayVector3
 		V3_toThree(): THREE.Vector3
 	}
 
@@ -153,4 +153,5 @@ declare global {
 	}
 }
 
+// Force TypeScript to recognize the file as a module
 export {}

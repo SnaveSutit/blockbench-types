@@ -1,6 +1,6 @@
 {
 	"name": "blockbench-types",
-	"version": "4.11.1",
+	"version": "4.12.1",
 	"description": "Blockbench typescript types",
 	"main": "",
 	"types": "types/index.d.ts",
@@ -18,19 +18,20 @@
 	},
 	"scripts": {
 		"lint": "prettier -w .",
-		"generate": "node ./scripts/generate_docs.js",
-		"generate-wiki": "node ./scripts/generate_docs.js --out \"../../blockbench.net/content/api/\""
+		"generate": "npx node-modules-vscode-problems-patch && node ./scripts/generate_docs.js",
+		"generate-wiki": "node ./scripts/generate_docs.js --out \"../../blockbench.net/content/api/\"",
+		"update-ignored-revs": "git config blame.ignoreRevsFile .git-blame-ignore-revs"
 	},
 	"homepage": "https://github.com/JannisX11/blockbench-types#readme",
 	"dependencies": {
 		"@babel/types": "^7.20.7",
 		"@types/dompurify": "^3.0.5",
-		"@types/jquery": "^3.5.4",
+		"@types/jquery": "^3.5.32",
 		"@types/prismjs": "^1.26.0",
 		"@types/three": "^0.129.2",
 		"@types/tinycolor2": "^1.4.6",
 		"dompurify": "^3.0.1",
-		"electron": "^31.4.0",
+		"electron": "^33.3.1",
 		"prismjs": "^1.29.0",
 		"tinycolor2": "^1.6.0",
 		"typescript": "^4.9.5",
@@ -39,6 +40,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^18.14.6",
+		"node-modules-vscode-problems-patch": "^1.0.8",
 		"prettier": "^2.8.3",
 		"typedoc": "^0.23.24"
 	}
