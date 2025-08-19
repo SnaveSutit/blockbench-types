@@ -41,6 +41,7 @@
 /// <reference types="./preview_scene" />
 /// <reference types="./preview" />
 /// <reference types="./project" />
+/// <reference types="./refModels" />
 /// <reference types="./screencam" />
 /// <reference types="./settings" />
 /// <reference types="./shared_actions" />
