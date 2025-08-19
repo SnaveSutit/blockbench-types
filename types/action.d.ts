@@ -262,8 +262,6 @@ declare global {
 		 */
 		tool_config?: ToolConfig
 		click: ActionOptions['click']
-
-		condition?(): boolean
 		/**
 		 * Trigger to run or select the action. This is the equivalent of clicking or using a keybind to trigger it. Also checks if the condition is met.
 		 */
