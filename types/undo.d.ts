@@ -16,7 +16,7 @@ declare global {
 		 * Saves an individual group, but not it's children or hierarchy position
 		 */
 		group?: Group
-		collections: Collection[]
+		collections?: Collection[]
 		/**
 		 * Textures to save
 		 */
