@@ -126,6 +126,7 @@ declare global {
 	class KeybindItem extends Deletable {
 		constructor(id: string, options: KeybindItemOptions)
 		keybind: Keybind
+		condition?: ConditionResolvable
 		variations?: {
 			[key: string]: { name: string; description?: string }
 		}
@@ -159,6 +160,11 @@ declare global {
 	class BarItem extends KeybindItem {
 		constructor(id: string, options: BarItemOptions)
 		id: string
+		name: string
+		description: string
+		icon?: string
+		category?: string
+
 		node: HTMLElement
 		nodes: HTMLElement[]
 		conditionMet(): boolean
@@ -226,10 +232,6 @@ declare global {
 		 * Icon color. Can be a CSS color string, or an axis letter to use an axis color.
 		 */
 		color?: string
-		/**
-		 * ID of a setting that the action is slinked to
-		 */
-		linked_setting?: string
 		children?: any[]
 		/**
 		 * Show the full label in toolbars
@@ -249,6 +251,7 @@ declare global {
 	 */
 	class Action extends BarItem {
 		constructor(id: string, options: ActionOptions)
+		icon: string
 		nodes: HTMLElement[]
 		/**
 		 * Provide a menu that belongs to the action, and gets displayed as a small arrow next to it in toolbars.
@@ -274,11 +277,15 @@ declare global {
 		setIcon(icon: IconString): void
 		toggleLinkedSetting(change: any): void
 	}
-	interface ToggleOptions extends ActionOptions {
+	interface ToggleOptions extends Omit<ActionOptions, 'click'> {
 		/**
 		 * Default value of the toggle
 		 */
 		default?: boolean
+		/**
+		 * ID of a setting that the toggle is linked to
+		 */
+		linked_setting?: string
 		/**
 		 * Method that gets called when the user changes the value of the toggle
 		 */
@@ -294,6 +301,10 @@ declare global {
 		 * Updates the state of the toggle in the UI
 		 */
 		updateEnabledState(): void
+		/**
+		 * ID of a setting that the toggle is linked to
+		 */
+		linked_setting?: string
 		set(value: boolean): this
 		setIcon(icon: IconString): void
 	}
@@ -455,6 +466,7 @@ declare global {
 		constructor(id: string, options: WidgetOptions)
 	}
 	type NumSliderOptions = WidgetOptions & {
+		private?: boolean
 		settings?: {
 			default?: number
 			min?: number
@@ -578,7 +590,8 @@ declare global {
 		const open: boolean
 		const type: string
 		const max_length: number
-		function select(): void
+		function select(input?: string): void
+		function show(input?: string): void
 		function hide(): void
 		function confirm(event: Event): void
 		function cancel(): void

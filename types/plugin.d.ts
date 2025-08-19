@@ -181,6 +181,7 @@ declare global {
 		 * Dev reload all side-loaded plugins
 		 */
 		function devReload(): void
+		const currently_loading: string
 	}
 }
 

@@ -81,7 +81,7 @@ declare global {
 	}
 
 	interface SharedActionHandler {
-		priority: number
+		priority?: number
 		subject: string
 		condition: ConditionResolvable
 		run: (event?: Event, context?: any) => void

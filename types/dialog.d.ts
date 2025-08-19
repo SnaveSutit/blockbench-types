@@ -48,6 +48,7 @@ declare global {
 		 * When using 'text' type, the text to display. Markdown is supported
 		 */
 		text?: string
+		condition?: ConditionResolvable
 		/**
 		 * When using 'range' type, allow users to modify the numeric input
 		 */
