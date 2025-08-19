@@ -3,6 +3,17 @@
 declare global {
 	const DisplayMode: {
 		slots: DisplaySlotName[]
+		setBase(
+			x: number,
+			y: number,
+			z: number,
+			rx: number,
+			ry: number,
+			rz: number,
+			sx: number,
+			sy: number,
+			sz: number
+		): void
 	}
 
 	type DisplaySlotName =
