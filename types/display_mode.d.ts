@@ -2,8 +2,18 @@
 
 declare global {
 	const DisplayMode: {
-		slots: string[]
+		slots: DisplaySlotName[]
 	}
+
+	type DisplaySlotName =
+		| 'firstperson_lefthand'
+		| 'firstperson_righthand'
+		| 'fixed'
+		| 'ground'
+		| 'gui'
+		| 'head'
+		| 'thirdperson_lefthand'
+		| 'thirdperson_righthand'
 
 	interface DisplaySlotOptions {
 		rotation?: ArrayVector3
@@ -18,7 +28,7 @@ declare global {
 	 * Display Slots hold the transform values for a specific item slot in the Minecraft Java Edition "Display Mode" feature
 	 */
 	class DisplaySlot {
-		constructor(id: string, data: DisplaySlotOptions)
+		constructor(id: DisplaySlotName, data: DisplaySlotOptions)
 		rotation: ArrayVector3
 		translation: ArrayVector3
 		scale: ArrayVector3
