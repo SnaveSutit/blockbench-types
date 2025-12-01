@@ -100,6 +100,7 @@ declare global {
 		 * Returns the value of the specified setting
 		 */
 		function get(setting_id: string): any
+		function updateSettingsInProfiles(): void
 	}
 }
 

@@ -24,6 +24,8 @@ declare global {
 	}
 
 	class Cube extends OutlinerElement {
+		static type: 'cube'
+		type: 'cube'
 		constructor(options: ICubeOptions, uuid?: string)
 		name: string
 		uuid: string
@@ -67,6 +69,7 @@ declare global {
 				faces: string[]
 			}
 		}
+		light_emission?: number
 
 		extend(options: ICubeOptions): this
 		/**
@@ -162,4 +165,5 @@ declare global {
 	}
 }
 
-export {}
+export { }
+

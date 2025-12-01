@@ -21,7 +21,7 @@ declare global {
 	let selected: OutlinerElement[]
 	const Toolbars: Record<string, Toolbar>
 
-	function rotateOnAxis(modify: OutlinerNode, axis: number, slider?: boolean): void
+	function rotateOnAxis(modify: (node: OutlinerNode) => number, axis: number, slider?: boolean): void
 	function afterRotateOnAxis(): void
 
 	// const Transformer: THREE.TransformControls

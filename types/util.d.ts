@@ -29,10 +29,10 @@ type GenericEventListenerOrEventListenerObject<EventName extends keyof WindowEve
 	| GenericEventListenerObject<EventName>
 
 declare global {
-	type ConditionResolvable =
+	type ConditionResolvable<T = any> =
 		| undefined
 		| boolean
-		| ((context: any) => boolean)
+		| ((context: T) => boolean)
 		| Partial<{
 				modes: string[]
 				formats: string[]
@@ -54,7 +54,7 @@ declare global {
 					outliner?: boolean
 				}
 				project: boolean
-				method(context: any): boolean
+				method(context: T): boolean
 		  }>
 
 	/**

@@ -145,6 +145,11 @@ declare global {
 		oninstall(): void
 		onuninstall(): void
 
+		load(): Promise<void>
+		unload(): void
+		install(): Promise<void>
+		uninstall(): void
+
 		static register(id: string, options: PluginOptions): BBPlugin
 
 		hasImageIcon(): boolean
@@ -169,6 +174,10 @@ declare global {
 		 * Data about which plugins are installed
 		 */
 		const installed: PluginInstalledData[]
+		/**
+		 * All installed and registered plugins
+		 */
+		const registered: Record<string, BBPlugin>
 		/**
 		 * The plugins window
 		 */

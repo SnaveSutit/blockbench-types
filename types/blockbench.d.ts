@@ -289,7 +289,7 @@ declare global {
 		 * Blockbench.dispatchEvent<EventName>(...)
 		 * ```
 		 */
-		export function dispatchEvent<E extends string>(event_name: E, data?: any): void
+		export function dispatchEvent<E extends string = EventName>(event_name: E, data?: any): void
 
 		/**
 		 * Adds a listener to a Blockbench event.
@@ -298,7 +298,7 @@ declare global {
 		 * Blockbench.addListener<EventName>(...)
 		 * ```
 		 */
-		export function addListener<E extends string>(
+		export function addListener<E extends string = EventName>(
 			event_names: E,
 			callback: (data: any) => void
 		): void
@@ -309,7 +309,10 @@ declare global {
 		 * Blockbench.on<EventName>(...)
 		 * ```
 		 */
-		export function on<E extends string>(event_names: E, callback: (data: any) => void): void
+		export function on<E extends string = EventName>(
+			event_names: E,
+			callback: (data: any) => void
+		): void
 
 		/**
 		 * Removes a listener from a Blockbench event.
@@ -318,7 +321,7 @@ declare global {
 		 * Blockbench.removeListener<EventName>(...)
 		 * ```
 		 */
-		export function removeListener<E extends string>(
+		export function removeListener<E extends string = EventName>(
 			event_names: E,
 			callback: (data: any) => void
 		): void

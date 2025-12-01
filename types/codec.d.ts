@@ -15,7 +15,7 @@ declare global {
 		write?(content: any, path: string): void
 		overwrite?(content: any, path: string, callback: (path: any) => void): void
 		afterDownload?(path: any): void
-		afterSave?(path: any): void
+		afterSave?(path: string): void
 		exportCollection?(collection: Collection): void
 		writeCollection?(collection: Collection): void
 

@@ -180,7 +180,7 @@ declare global {
 		addToTimeline(): this
 		addKeyframe(data: KeyframeOptions, uuid?: string): _Keyframe
 		createKeyframe(): _Keyframe
-		getOrMakeKeyframe(): { before: _Keyframe; result: _Keyframe }
+		getOrMakeKeyframe(channel: string): { before: _Keyframe; result: _Keyframe }
 		toggleMuted(channel: string): this
 		scrollTo(): this
 

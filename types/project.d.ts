@@ -1,6 +1,13 @@
 /// <reference path="./blockbench.d.ts"/>
 
 declare global {
+	interface DisplaySettings {
+		translation: ArrayVector3
+		rotation: ArrayVector3
+		scale: ArrayVector3
+		mirror: [boolean, boolean, boolean]
+		export?(...args: any[]): any
+	}
 	interface ModelProjectOptions {
 		format: ModelFormat
 	}
@@ -65,15 +72,7 @@ declare global {
 		outliner: OutlinerNode[]
 		animations: _Animation[]
 		timeline_animators: []
-		display_settings: {
-			[slot: string]: {
-				translation: [number, number, number]
-				rotation: [number, number, number]
-				scale: [number, number, number]
-				mirror: [boolean, boolean, boolean]
-				export?(...args: any[]): any
-			}
-		}
+		display_settings: Record<DisplaySlotName, DisplaySlot>
 		overrides?: any
 		exploded_view: boolean
 		tool: string

@@ -11,6 +11,7 @@ declare global {
 	 * Collections are "selection presets" for a set of groups and elements in your project, independent from outliner hierarchy
 	 */
 	class Collection {
+		static properties: Record<string, Property<any>>
 		constructor(data?: CollectionOptions, uuid?: string)
 
 		selected: boolean

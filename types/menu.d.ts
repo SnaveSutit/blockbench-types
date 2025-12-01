@@ -64,16 +64,23 @@ declare global {
 		structure: MenuItem[]
 	}
 
+	interface BarMenuOptions {
+		name?: string
+		icon?: IconString
+		condition?: ConditionResolvable
+	}
+
 	/**
 	 * Creates a new menu in the menu bar
 	 */
 	class BarMenu extends Menu {
-		constructor(id: string, structure: MenuItem[], condition?: ConditionResolvable)
+		constructor(id: string, structure: MenuItem[], options?: BarMenuOptions)
 		type: 'bar_menu'
 		id: string
 		condition?: ConditionResolvable
 		name: string
 		structure: MenuItem[]
+		label: HTMLDivElement
 		/**
 		 * Visually highlights an action within the menu, until the user opens the menu
 		 */

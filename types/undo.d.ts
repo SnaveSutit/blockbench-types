@@ -57,7 +57,7 @@ declare global {
 		}
 		animations?: {}
 		keyframes?: {}
-		display_slots?: {}
+		display_slots?: { [Slot in DisplaySlotName]?: DisplaySlot }
 		exploded_views?: boolean
 		/**
 		 * Load the undo save

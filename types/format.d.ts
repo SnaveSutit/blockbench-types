@@ -46,22 +46,7 @@ declare global {
 		coordinate_limits?: [number, number]
 	}
 
-	interface FormatOptions {
-		id: string
-		icon: string
-		name?: string
-		description?: string
-		category?: string
-		target?: string | string[]
-		confidential?: boolean
-		condition?: ConditionResolvable
-		show_on_start_screen?: boolean
-		format_page?: FormatPage
-		onFormatPage?(): void
-		onStart?(): void
-		onSetup?(project: ModelProject, newModel?: boolean): void
-		convertTo?(): void
-
+	interface FormatFeatures {
 		/**
 		 * Enables Box UV on cubes by default
 		 */
@@ -111,9 +96,17 @@ declare global {
 		 */
 		bone_rig: boolean
 		/**
+		 * Enable armatures to rig meshes
+		 */
+		armature_rig: boolean
+		/**
 		 * Align the grid center with the model origin, instead of the grid corner
 		 */
 		centered_grid: boolean
+		/**
+		 * Specify how large in pixels a block is. Defaults to 16.
+		 */
+		block_size: number
 		/**
 		 * Add the ability to rotate cubes
 		 */
@@ -131,13 +124,25 @@ declare global {
 		 */
 		meshes: boolean
 		/**
+		 * Enable spline elements
+		 */
+		splines: boolean
+		/**
 		 * Enable texture meshes
 		 */
 		texture_meshes: boolean
 		/**
+		 * Enable billboard elements
+		 */
+		billboards: boolean
+		/**
 		 * Enable locators
 		 */
 		locators: boolean
+		/**
+		 * Enable PBR texture materials yay
+		 */
+		pbr: boolean
 		/**
 		 * Enforces a rotation limit for cubes of up to 45 degrees in either direction and one axis at a time
 		 */
@@ -146,6 +151,10 @@ declare global {
 		 * Forces cube rotations to snap to 22.5 degree increments
 		 */
 		rotation_snap: boolean
+		/**
+		 * Rotation euler order for outliner nodes
+		 */
+		euler_order: 'XYZ' | 'ZYX'
 		/**
 		 * Allows cube UVs to be rotated
 		 */
@@ -203,6 +212,18 @@ declare global {
 		 */
 		animation_controllers: boolean
 		/**
+		 * If true, interpolation between keyframes in looping animations will wrap around
+		 */
+		animation_loop_wrapping: boolean
+		/**
+		 * If true, use quaternion lerping to interpolate between rotation keyframes
+		 */
+		quaternion_interpolation: boolean
+		/**
+		 * Toggle quaternion interpolation per node / animator
+		 */
+		per_animator_rotation_interpolation: boolean
+		/**
 		 * If true, cube sizes will not be floored to calculate UV sizes with box UV. This can result in UVs not aligning with pixel edges
 		 */
 		box_uv_float_size: boolean
@@ -222,12 +243,27 @@ declare global {
 		 * Set the default render sides for textures
 		 */
 		render_sides: 'front' | 'double' | 'back' | (() => 'front' | 'double' | 'back')
-
 		/**
 		 * Options to limit the size of cubes
 		 */
 		cube_size_limiter?: CubeSizeLimiter
+	}
 
+	type FormatOptions = Partial<FormatFeatures> & {
+		id: string
+		icon: string | HTMLElement
+		name?: string
+		description?: string
+		category?: string
+		target?: string | string[]
+		confidential?: boolean
+		condition?: ConditionResolvable
+		show_on_start_screen?: boolean
+		format_page?: FormatPage
+		onFormatPage?(): void
+		onStart?(): void
+		onSetup?(project: ModelProject, newModel?: boolean): void
+		convertTo?(): void
 		codec?: Codec
 		onActivation?(): void
 		onDeactivation?(): void
@@ -235,8 +271,8 @@ declare global {
 	interface ModelFormat extends FormatOptions {}
 
 	class ModelFormat extends Deletable implements FormatOptions {
-		constructor(id: string, options: Partial<FormatOptions>)
-		constructor(options: Partial<FormatOptions>)
+		constructor(id: string, options: FormatOptions)
+		constructor(options: FormatOptions)
 
 		id: string
 		icon: string

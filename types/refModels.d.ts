@@ -9,58 +9,53 @@ declare global {
 		| 'ground'
 		| 'fixed'
 
-	let display_slot: DisplaySlotNames
-	let display_area: THREE.Object3D
-
 	interface RefModelOptions {
-		icon: string
+		icon?: string
+		models?: DisplayReferenceModel.Model[]
 		condition?: ConditionResolvable
 	}
 
 	const displayReferenceObjects: {
 		refmodels: {
-			player: refModel
-			zombie: refModel
-			armor_stand: refModel
-			baby_zombie: refModel
-			armor_stand_small: refModel
-			fox: refModel
-			monitor: refModel
-			bow: refModel
-			crossbow: refModel
-			eating: refModel
-			tooting: refModel
-			block: refModel
-			frame: refModel
-			frame_invisible: refModel
-			frame_top: refModel
-			frame_top_invisible: refModel
-			inventory_nine: refModel
-			inventory_full: refModel
-			hud: refModel
+			player: refModel<'player'>
+			zombie: refModel<'zombie'>
+			armor_stand: refModel<'armor_stand'>
+			baby_zombie: refModel<'baby_zombie'>
+			armor_stand_small: refModel<'armor_stand_small'>
+			fox: refModel<'fox'>
+			monitor: refModel<'monitor'>
+			bow: refModel<'bow'>
+			crossbow: refModel<'crossbow'>
+			eating: refModel<'eating'>
+			tooting: refModel<'tooting'>
+			block: refModel<'block'>
+			frame: refModel<'frame'>
+			frame_invisible: refModel<'frame_invisible'>
+			frame_top: refModel<'frame_top'>
+			frame_top_invisible: refModel<'frame_top_invisible'>
+			inventory_nine: refModel<'inventory_nine'>
+			inventory_full: refModel<'inventory_full'>
+			hud: refModel<'hud'>
 		}
-		active?: refModel
-		bar(buttons: any): void
+		active: refModel<keyof typeof displayReferenceObjects.refmodels> | ''
+		/* Clears the active display model */
 		clear(): void
-		ref_indexes: {
-			thirdperson_righthand: number
-			thirdperson_lefthand: number
-			firstperson_righthand: number
-			firstperson_lefthand: number
-			ground: number
-			gui: number
-			head: number
-			fixed: number
-		}
-		slots: DisplaySlotNames[]
+		bar(buttons: any): void
+		ref_indexes: Record<DisplaySlotNames, number>
+		slots: DisplaySlotName[]
 	}
 
-	class refModel {
-		pose_angles: Record<DisplaySlotNames, number>
-		variant?: string
+	class refModel<ID extends string> {
+		constructor(id: ID, options?: RefModelOptions)
+		id: ID
 		name: string
-		model: THREE.Object3D
-		constructor(id: string, options?: RefModelOptions)
+		icon: string
+		model: THREE.Mesh
+		models: DisplayReferenceModel.Model[]
+		condition?: ConditionResolvable
+		initialized: boolean
+		variant?: 'steve' | 'alex'
+		pose_angles: Record<DisplaySlotNames, number>
 		buildModel(things: any, texture: string, texture_res?: ArrayVector2): this
 		setModelVariant(variant: string): void
 		load(index: any): void

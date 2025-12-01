@@ -93,8 +93,11 @@ declare global {
 		from: ArrayVector3
 	}
 	class Locator extends OutlinerElement {
+		static type: 'locator'
+		type: 'locator'
 		constructor(options: Partial<LocatorOptions>, uuid?: string)
 		name: string
+
 
 		extend(options: Partial<LocatorOptions>): void
 		flip(axis: number, center: number): this

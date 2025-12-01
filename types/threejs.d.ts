@@ -13,6 +13,8 @@ declare module 'three' {
 		no_export?: boolean
 		isElement?: boolean
 		isGroup?: boolean
+		r_model?: 'steve' | 'alex'
+		sprite?: THREE.Sprite
 	}
 }
 

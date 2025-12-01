@@ -285,6 +285,7 @@ declare global {
 		constructor(options: DialogOptions)
 
 		id: string
+		object?: HTMLDialogElement
 		component: Vue.Component
 		sidebar: DialogSidebar | null
 		content_vue: Vue | null
