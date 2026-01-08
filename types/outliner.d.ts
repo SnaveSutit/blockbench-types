@@ -5,6 +5,8 @@ declare global {
 	type ArrayVector3 = [number, number, number]
 	type ArrayVector2 = [number, number]
 
+	function invertMolang(molang: string | number): string | number
+
 	const elements: OutlinerNode[]
 	/**
 	 * @private
@@ -97,7 +99,6 @@ declare global {
 		type: 'locator'
 		constructor(options: Partial<LocatorOptions>, uuid?: string)
 		name: string
-
 
 		extend(options: Partial<LocatorOptions>): void
 		flip(axis: number, center: number): this
@@ -196,6 +197,7 @@ declare global {
 			visibility: OutlinerToggle
 			[id: string]: OutlinerToggle
 		}
+		function loadJSON(array: any[]): void
 	}
 
 	const markerColors: {
@@ -206,6 +208,9 @@ declare global {
 
 	function compileGroups(undo: boolean, lut?: { [index: number]: number }): any[]
 
+	/**
+	 * @deprecated Use Outliner.loadJSON
+	 */
 	function parseGroups(array: any[], import_reference?: Group, startIndex?: number): void
 }
 

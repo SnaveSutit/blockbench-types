@@ -26,7 +26,7 @@ declare global {
 			path: string
 			content: string | ArrayBuffer
 		}
-		type ReadType = 'buffer' | 'binary' | 'text' | 'image'
+		type ReadType = 'buffer' | 'binary' | 'text' | 'image' | 'none'
 		interface ReadOptions {
 			readtype?: ReadType | ((file: string) => ReadType)
 			errorbox?: boolean

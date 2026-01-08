@@ -342,6 +342,10 @@ declare global {
 		 */
 		onCancel?(): void
 		/**
+		 * Triggered when the dialog is built
+		 */
+		onBuild?(): void
+		/**
 		 * Triggered when the user presses a specific button
 		 */
 		onButton?(button_index: number, event?: Event): void

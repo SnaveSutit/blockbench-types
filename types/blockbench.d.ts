@@ -386,6 +386,8 @@ declare global {
 		): Deletable
 
 		export function removeDragHandler(id: string): void
+
+		export function isNewerThan(version: string): boolean
 	}
 
 	type BlockbenchTypeOutliner = typeof Outliner

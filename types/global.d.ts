@@ -12,7 +12,6 @@ declare global {
 	function confirm(message: string, title: string): boolean
 
 	const PathModule: typeof import('path')
-	const fs: typeof import('fs')
 
 	// Hide the "Prefer imports over UMD globals" warning for these
 	namespace DOMPurify {}
@@ -21,7 +20,11 @@ declare global {
 	let selected: OutlinerElement[]
 	const Toolbars: Record<string, Toolbar>
 
-	function rotateOnAxis(modify: (node: OutlinerNode) => number, axis: number, slider?: boolean): void
+	function rotateOnAxis(
+		modify: (node: OutlinerNode) => number,
+		axis: number,
+		slider?: boolean
+	): void
 	function afterRotateOnAxis(): void
 
 	// const Transformer: THREE.TransformControls
